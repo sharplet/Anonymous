@@ -8,6 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-@interface Anonymous : NSObject
+id instanceOf(Protocol *p, void (^def)(void));
 
-@end
+void implement(SEL sel, id imp_block);

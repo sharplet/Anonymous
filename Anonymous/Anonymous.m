@@ -8,6 +8,11 @@
 
 #import "Anonymous.h"
 
-@implementation Anonymous
+id instanceOf(Protocol *p, void (^def)(void))
+{
+    return nil;
+}
 
-@end
+void implement(SEL sel, id imp_block)
+{
+}
