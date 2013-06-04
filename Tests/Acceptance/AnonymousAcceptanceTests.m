@@ -12,7 +12,7 @@ describe(@"instanceOf", ^{
         id fooInstance = instanceOf(@protocol(Foo), nil);
 
         [[fooInstance should] conformToProtocol:@protocol(Foo)];
-        [[fooInstance should] beSubclassOfClass:[NSObject class]];
+        [[fooInstance should] beKindOfClass:[NSObject class]];
     });
 
 });

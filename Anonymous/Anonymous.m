@@ -7,10 +7,13 @@
 //
 
 #import "Anonymous.h"
+#import "AAClassPrototype.h"
+
 
 id instanceOf(Protocol *p, void (^def)(void))
 {
-    return nil;
+    AAClassPrototype *proto = [[AAClassPrototype alloc] initWithProtocol:p];
+    return [proto new];
 }
 
 void implement(SEL sel, id imp_block)

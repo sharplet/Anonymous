@@ -14,6 +14,8 @@
 		4A54CBE0175DCACE00B2BFDD /* libAnonymous.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A54CBC7175DCACE00B2BFDD /* libAnonymous.a */; };
 		4A54CBF5175DCD4200B2BFDD /* AnonymousAcceptanceTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A54CBF3175DCC8300B2BFDD /* AnonymousAcceptanceTests.m */; };
 		4A54CBFA175DD17400B2BFDD /* Anonymous.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A54CBF9175DD17400B2BFDD /* Anonymous.m */; };
+		4AA0AF2B175DD5C900A1212B /* AAClassPrototype.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AA0AF2A175DD5C900A1212B /* AAClassPrototype.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		4AA0AF2F175DD72500A1212B /* AAClassPrototypeSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AA0AF2D175DD6F600A1212B /* AAClassPrototypeSpec.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +50,9 @@
 		4A54CBF2175DCBF700B2BFDD /* Anonymous.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Anonymous.h; sourceTree = "<group>"; };
 		4A54CBF3175DCC8300B2BFDD /* AnonymousAcceptanceTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnonymousAcceptanceTests.m; sourceTree = "<group>"; };
 		4A54CBF9175DD17400B2BFDD /* Anonymous.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Anonymous.m; sourceTree = "<group>"; };
+		4AA0AF29175DD5C900A1212B /* AAClassPrototype.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AAClassPrototype.h; sourceTree = "<group>"; };
+		4AA0AF2A175DD5C900A1212B /* AAClassPrototype.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AAClassPrototype.m; sourceTree = "<group>"; };
+		4AA0AF2D175DD6F600A1212B /* AAClassPrototypeSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AAClassPrototypeSpec.m; sourceTree = "<group>"; };
 		752BA22239284C63BB4870A8 /* Pods-AnonymousTests.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AnonymousTests.xcconfig"; path = "Pods/Pods-AnonymousTests.xcconfig"; sourceTree = SOURCE_ROOT; };
 		8282AB53D1184280B6682362 /* libPods-AnonymousTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-AnonymousTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -111,6 +116,8 @@
 			children = (
 				4A54CBF2175DCBF700B2BFDD /* Anonymous.h */,
 				4A54CBF9175DD17400B2BFDD /* Anonymous.m */,
+				4AA0AF29175DD5C900A1212B /* AAClassPrototype.h */,
+				4AA0AF2A175DD5C900A1212B /* AAClassPrototype.m */,
 				4A54CBCD175DCACE00B2BFDD /* Supporting Files */,
 			);
 			path = Anonymous;
@@ -128,6 +135,7 @@
 			isa = PBXGroup;
 			children = (
 				4AA0AF2C175DD67E00A1212B /* Acceptance */,
+				4AA0AF2D175DD6F600A1212B /* AAClassPrototypeSpec.m */,
 			);
 			path = Tests;
 			sourceTree = SOURCE_ROOT;
@@ -268,6 +276,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4A54CBFA175DD17400B2BFDD /* Anonymous.m in Sources */,
+				4AA0AF2B175DD5C900A1212B /* AAClassPrototype.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -276,6 +285,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4A54CBF5175DCD4200B2BFDD /* AnonymousAcceptanceTests.m in Sources */,
+				4AA0AF2F175DD72500A1212B /* AAClassPrototypeSpec.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
