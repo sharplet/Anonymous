@@ -31,7 +31,7 @@
 + (NSMutableDictionary *)protocolSubclassCounts;
 
 // instance creation
-@property (nonatomic) BOOL instanceCreated;
+@property (nonatomic, weak) id instance;
 
 - (void)registerClassPair;
 - (void)implementDealloc;
@@ -59,7 +59,6 @@
     self = [super init];
     if (self) {
         _protocol = protocol;
-        _instanceCreated = NO;
     }
     return self;
 }
@@ -68,21 +67,24 @@
 
 - (id)new
 {
+    id instance;
+
     @synchronized (self) {
-        if (!self.instanceCreated) {
-            self.instanceCreated = YES;
-        }
-        else {
+        if (self.instance) {
             @throw [NSException exceptionWithName:AA_CLASS_PROTOTYPE_EXCEPTION
                                            reason:AA_CLASS_PROTOTYPE_EXCEPTION_REASON_SECOND_INSTANCE
                                          userInfo:nil];
         }
+        else {
+            [self registerClassPair];
+            [self implementDealloc];
+
+            instance = [self.prototypeClass new];
+            self.instance = instance;
+        }
     }
 
-    // this will be executed only once
-    [self registerClassPair];
-    [self implementDealloc];
-    return [self.prototypeClass new];
+    return instance;
 }
 
 - (void)registerClassPair

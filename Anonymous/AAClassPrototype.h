@@ -16,7 +16,8 @@
  The classes that are generated are anonymous in that they are
  dynamically allocated and registered with the runtime, and their
  lifetime is restricted to the lifetime of the object instantiated from
- the prototype.
+ the prototype (that is, the class is disposed of from the runtime
+ automatically when the instance is deallocated).
  */
 @interface AAClassPrototype : NSObject
 
