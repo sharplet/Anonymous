@@ -41,6 +41,16 @@ describe(@"AAClassPrototype", ^{
             instance = nil;
         });
 
+        it(@"raises AAClassPrototypeException if a second instance is requested", ^{
+            AAClassPrototype *proto = [[AAClassPrototype alloc] initWithProtocol:@protocol(AAClassPrototypeSpec)];
+
+            __block id instance1 = nil, instance2 = nil;
+            [[theBlock(^{
+                instance1 = [proto new];
+                instance2 = [proto new];
+            }) should] raiseWithName:@"AAClassPrototypeException"];
+        });
+
     });
 
     describe(@"cleanup", ^{
