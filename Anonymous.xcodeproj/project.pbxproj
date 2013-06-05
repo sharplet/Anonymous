@@ -14,7 +14,7 @@
 		4A54CBE0175DCACE00B2BFDD /* libAnonymous.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A54CBC7175DCACE00B2BFDD /* libAnonymous.a */; };
 		4A54CBF5175DCD4200B2BFDD /* AnonymousAcceptanceTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A54CBF3175DCC8300B2BFDD /* AnonymousAcceptanceTests.m */; };
 		4A54CBFA175DD17400B2BFDD /* Anonymous.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A54CBF9175DD17400B2BFDD /* Anonymous.m */; };
-		4AA0AF2B175DD5C900A1212B /* AAClassPrototype.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AA0AF2A175DD5C900A1212B /* AAClassPrototype.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		4AA0AF2B175DD5C900A1212B /* AAClassPrototype.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AA0AF2A175DD5C900A1212B /* AAClassPrototype.m */; };
 		4AA0AF2F175DD72500A1212B /* AAClassPrototypeSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AA0AF2D175DD6F600A1212B /* AAClassPrototypeSpec.m */; };
 /* End PBXBuildFile section */
 

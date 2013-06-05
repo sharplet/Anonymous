@@ -20,7 +20,7 @@
 @property (nonatomic, unsafe_unretained) Protocol *protocol;
 @property (nonatomic, unsafe_unretained) Class prototypeClass;
 
-@property (nonatomic, retain) NSMutableDictionary *protocolSubclassCounts;
+@property (nonatomic, strong) NSMutableDictionary *protocolSubclassCounts;
 
 @end
 
@@ -31,7 +31,7 @@
     self = [super init];
     if (self) {
         _protocol = protocol;
-        _protocolSubclassCounts = [[NSMutableDictionary alloc] init];
+        _protocolSubclassCounts = [NSMutableDictionary new];
     }
     return self;
 }
@@ -59,7 +59,7 @@
     IMP dealloc_imp = imp_implementationWithBlock(^(id self){
         objc_disposeClassPair(_prototypeClass);
     });
-    class_addMethod(self.prototypeClass, @selector(dealloc), dealloc_imp, "v@:");
+    class_addMethod(self.prototypeClass, NSSelectorFromString(@"dealloc"), dealloc_imp, "v@:");
 }
 
 - (NSString *)nextClassName
@@ -73,12 +73,6 @@
     }
 
     return [NSString stringWithFormat:AA_CLASS_NAME_FORMAT, protocolKey, count];
-}
-
-- (void)dealloc
-{
-    [_protocolSubclassCounts release];
-    [super dealloc];
 }
 
 @end
