@@ -9,66 +9,80 @@
 #import "AAClassPrototype.h"
 #import <objc/runtime.h>
 
-#define AA_CLASS_NAME_FORMAT @"AA_CLASSES__%@_%d"
+
+#define AA_CLASS_PROTOTYPE_CLASS_NAME_FORMAT @"AA_CLASSES__%@_%d"
 
 #define AA_CLASS_PROTOTYPE_EXCEPTION \
     @"AAClassPrototypeException"
 #define AA_CLASS_PROTOTYPE_EXCEPTION_REASON_SECOND_INSTANCE \
     @"Instantiating more than one instance from a class prototype is forbidden."
 
+
+#pragma mark -
+
+
 @interface AAClassPrototype ()
+
+// redeclare these properties as read/write
+@property (nonatomic, unsafe_unretained) Protocol *protocol;
+@property (nonatomic, unsafe_unretained) Class prototypeClass;
+
+// used by -nextClassName to generate unique class names
++ (NSMutableDictionary *)protocolSubclassCounts;
+
+// instance creation
+@property (nonatomic) BOOL instanceCreated;
 
 - (void)registerClassPair;
 - (void)implementDealloc;
 - (NSString *)nextClassName;
 
-@property (nonatomic, unsafe_unretained) Protocol *protocol;
-@property (nonatomic, unsafe_unretained) Class prototypeClass;
-
-@property (nonatomic, strong) NSMutableDictionary *protocolSubclassCounts;
-@property (atomic, readonly) BOOL instanceCreated;
-
 @end
+
 
 @implementation AAClassPrototype
 
-@synthesize instanceCreated = _instanceCreated;
++ (NSMutableDictionary *)protocolSubclassCounts
+{
+    static NSMutableDictionary *protocolSubclassCounts;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        protocolSubclassCounts = [NSMutableDictionary new];
+    });
+    return protocolSubclassCounts;
+}
+
+#pragma mark Initialisation
 
 - (id)initWithProtocol:(Protocol *)protocol
 {
     self = [super init];
     if (self) {
         _protocol = protocol;
-        _protocolSubclassCounts = [NSMutableDictionary new];
         _instanceCreated = NO;
     }
     return self;
 }
 
+#pragma mark Instantiating the prototype
+
 - (id)new
 {
-    if (!self.instanceCreated) {
-        [self registerClassPair];
-        [self implementDealloc];
-        return [self.prototypeClass new];
-    }
-    else {
-        @throw [NSException exceptionWithName:AA_CLASS_PROTOTYPE_EXCEPTION
-                                       reason:AA_CLASS_PROTOTYPE_EXCEPTION_REASON_SECOND_INSTANCE
-                                     userInfo:nil];
-    }
-}
-- (BOOL)instanceCreated
-{
     @synchronized (self) {
-        if (!_instanceCreated) {
-            _instanceCreated = YES;
-            return NO;
+        if (!self.instanceCreated) {
+            self.instanceCreated = YES;
         }
         else {
-            return YES;
+            @throw [NSException exceptionWithName:AA_CLASS_PROTOTYPE_EXCEPTION
+                                           reason:AA_CLASS_PROTOTYPE_EXCEPTION_REASON_SECOND_INSTANCE
+                                         userInfo:nil];
         }
     }
+
+    // this will be executed only once
+    [self registerClassPair];
+    [self implementDealloc];
+    return [self.prototypeClass new];
 }
 
 - (void)registerClassPair
@@ -91,13 +105,15 @@
 
 - (NSString *)nextClassName
 {
+    NSUInteger count;
     NSString *protocolKey = NSStringFromProtocol(self.protocol);
 
-    NSUInteger count;
-    count = [self.protocolSubclassCounts[protocolKey] integerValue];
-    self.protocolSubclassCounts[protocolKey] = @(++count);
+    @synchronized (self.protocol) {
+        count = [AAClassPrototype.protocolSubclassCounts[protocolKey] integerValue];
+        AAClassPrototype.protocolSubclassCounts[protocolKey] = @(++count);
+    }
 
-    return [NSString stringWithFormat:AA_CLASS_NAME_FORMAT, protocolKey, count];
+    return [NSString stringWithFormat:AA_CLASS_PROTOTYPE_CLASS_NAME_FORMAT, protocolKey, count];
 }
 
 @end
