@@ -134,19 +134,11 @@
 		4A54CBE1175DCACE00B2BFDD /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				4AA0AF2C175DD67E00A1212B /* Acceptance */,
+				4A54CBF3175DCC8300B2BFDD /* AnonymousAcceptanceTests.m */,
 				4AA0AF2D175DD6F600A1212B /* AAClassPrototypeSpec.m */,
 			);
 			path = Tests;
 			sourceTree = SOURCE_ROOT;
-		};
-		4AA0AF2C175DD67E00A1212B /* Acceptance */ = {
-			isa = PBXGroup;
-			children = (
-				4A54CBF3175DCC8300B2BFDD /* AnonymousAcceptanceTests.m */,
-			);
-			path = Acceptance;
-			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
