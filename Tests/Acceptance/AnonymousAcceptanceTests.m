@@ -8,6 +8,14 @@
 - (void)doFooBar;
 @end
 
+@protocol ComplexFooBar <NSObject>
+- (int)doNumericFooBarWithArgument:(int)arg;
+@end
+
+@protocol StatefulFooBar <NSObject>
+@property (nonatomic, strong) NSString *nickname;
+@end
+
 SPEC_BEGIN(AnonymousAcceptanceTests)
 
 describe(@"instanceOf", ^{
@@ -30,6 +38,39 @@ describe(@"instanceOf", ^{
         [fooBar doFooBar];
 
         [[theValue(called) should] equal:theValue(YES)];
+    });
+
+    it(@"allows an instance method with arguments and return value to be defined", ^{
+        id<ComplexFooBar> fooBar = instanceOf(@protocol(ComplexFooBar), ^{
+            implement(@selector(doNumericFooBarWithArgument:), ^(id self, int arg){
+                return arg * arg;
+            });
+        });
+
+        [[theValue([fooBar doNumericFooBarWithArgument:5]) should] equal:theValue(25)];
+    });
+
+    it(@"allows you to build anonymous classes with state", ^{
+        id<StatefulFooBar> fooBar = instanceOf(@protocol(StatefulFooBar), ^{
+
+            // @property nickname
+            __block NSString *_nickname;
+            implement(@selector(nickname), ^(id self){
+                return _nickname;
+            });
+            implement(@selector(setNickname:), ^(id self, NSString *nickname){
+                _nickname = nickname;
+            });
+
+            // -description
+            implement(@selector(description), ^(id<StatefulFooBar> self){
+                return [NSString stringWithFormat:@"They call me '%@'", self.nickname];
+            });
+
+        });
+
+        fooBar.nickname = @"Hello, world!";
+        [[fooBar.description should] equal:@"They call me 'Hello, world!'"];
     });
 
 });
