@@ -25,8 +25,10 @@
  Create a class prototype based on the given protocol.
 
  @param protocol The protocol to base the class prototype on.
+ @param definitionBlock A block that should implement methods on the
+     prototype's class, using `define:withBlock:`.
  */
-- (id)initWithProtocol:(Protocol *)protocol;
+- (id)initWithProtocol:(Protocol *)protocol definition:(void (^)(void))definitionBlock;
 
 /**
  Get an instance of the prototype. This should only be called once.
@@ -38,7 +40,28 @@
  */
 - (id)new;
 
+/**
+ Get the class prototype for the currently executing definition block.
+ If called outside the context of a definition block, returns nil.
+
+ @return The class prototype for the currently executing definition
+     block, or nil.
+ */
++ (instancetype)current;
+
+/**
+ Add a method to the class. Type information for the IMP is looked up
+ from the prototype's protocol.
+
+ @param sel The selector to implement.
+ @param imp A block implementing the selector. It's first parameter
+     must be `self`, with the remaining parameters being those defined
+     by the selector.
+ */
+- (void)define:(SEL)sel withBlock:(id)imp;
+
 @property (nonatomic, readonly) Protocol *protocol;
 @property (nonatomic, readonly) Class prototypeClass;
+@property (nonatomic, readonly, copy) void (^definitionBlock)(void);
 
 @end

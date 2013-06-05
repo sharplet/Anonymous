@@ -12,10 +12,11 @@
 
 id instanceOf(Protocol *p, void (^def)(void))
 {
-    AAClassPrototype *proto = [[AAClassPrototype alloc] initWithProtocol:p];
+    AAClassPrototype *proto = [[AAClassPrototype alloc] initWithProtocol:p definition:def];
     return [proto new];
 }
 
 void implement(SEL sel, id imp_block)
 {
+    [[AAClassPrototype current] define:sel withBlock:imp_block];
 }
