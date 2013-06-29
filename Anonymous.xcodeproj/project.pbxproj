@@ -13,7 +13,7 @@
 		4A54CBDD175DCACE00B2BFDD /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A54CBCA175DCACE00B2BFDD /* Foundation.framework */; };
 		4A54CBE0175DCACE00B2BFDD /* libAnonymous.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A54CBC7175DCACE00B2BFDD /* libAnonymous.a */; };
 		4A54CBF5175DCD4200B2BFDD /* AnonymousAcceptanceTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A54CBF3175DCC8300B2BFDD /* AnonymousAcceptanceTests.m */; };
-		4A54CBFA175DD17400B2BFDD /* Anonymous.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A54CBF9175DD17400B2BFDD /* Anonymous.m */; };
+		4A54CBFA175DD17400B2BFDD /* AnonymousSubclass.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A54CBF9175DD17400B2BFDD /* AnonymousSubclass.m */; };
 		4AA0AF2B175DD5C900A1212B /* AAClassPrototype.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AA0AF2A175DD5C900A1212B /* AAClassPrototype.m */; };
 		4AA0AF2F175DD72500A1212B /* AAClassPrototypeSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AA0AF2D175DD6F600A1212B /* AAClassPrototypeSpec.m */; };
 /* End PBXBuildFile section */
@@ -47,9 +47,9 @@
 		4A54CBD8175DCACE00B2BFDD /* AnonymousTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AnonymousTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4A54CBD9175DCACE00B2BFDD /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		4A54CBDB175DCACE00B2BFDD /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
-		4A54CBF2175DCBF700B2BFDD /* Anonymous.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Anonymous.h; sourceTree = "<group>"; };
+		4A54CBF2175DCBF700B2BFDD /* AnonymousSubclass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnonymousSubclass.h; sourceTree = "<group>"; };
 		4A54CBF3175DCC8300B2BFDD /* AnonymousAcceptanceTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnonymousAcceptanceTests.m; sourceTree = "<group>"; };
-		4A54CBF9175DD17400B2BFDD /* Anonymous.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Anonymous.m; sourceTree = "<group>"; };
+		4A54CBF9175DD17400B2BFDD /* AnonymousSubclass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnonymousSubclass.m; sourceTree = "<group>"; };
 		4AA0AF29175DD5C900A1212B /* AAClassPrototype.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AAClassPrototype.h; sourceTree = "<group>"; };
 		4AA0AF2A175DD5C900A1212B /* AAClassPrototype.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AAClassPrototype.m; sourceTree = "<group>"; };
 		4AA0AF2D175DD6F600A1212B /* AAClassPrototypeSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AAClassPrototypeSpec.m; sourceTree = "<group>"; };
@@ -114,8 +114,8 @@
 		4A54CBCC175DCACE00B2BFDD /* Anonymous */ = {
 			isa = PBXGroup;
 			children = (
-				4A54CBF2175DCBF700B2BFDD /* Anonymous.h */,
-				4A54CBF9175DD17400B2BFDD /* Anonymous.m */,
+				4A54CBF2175DCBF700B2BFDD /* AnonymousSubclass.h */,
+				4A54CBF9175DD17400B2BFDD /* AnonymousSubclass.m */,
 				4AA0AF29175DD5C900A1212B /* AAClassPrototype.h */,
 				4AA0AF2A175DD5C900A1212B /* AAClassPrototype.m */,
 				4A54CBCD175DCACE00B2BFDD /* Supporting Files */,
@@ -267,7 +267,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4A54CBFA175DD17400B2BFDD /* Anonymous.m in Sources */,
+				4A54CBFA175DD17400B2BFDD /* AnonymousSubclass.m in Sources */,
 				4AA0AF2B175DD5C900A1212B /* AAClassPrototype.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

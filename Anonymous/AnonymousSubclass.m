@@ -6,17 +6,17 @@
 //  Copyright (c) 2013 Adam Sharp. All rights reserved.
 //
 
-#import "Anonymous.h"
+#import "AnonymousSubclass.h"
 #import "AAClassPrototype.h"
 
 
-id instanceOf(Protocol *p, void (^def)(void))
+id aa_instanceOf(Protocol *p, void (^def)(void))
 {
     AAClassPrototype *proto = [[AAClassPrototype alloc] initWithProtocol:p definition:def];
     return [proto new];
 }
 
-void implement(SEL sel, id imp_block)
+void aa_implement(SEL sel, id imp_block)
 {
     [[AAClassPrototype current] define:sel withBlock:imp_block];
 }

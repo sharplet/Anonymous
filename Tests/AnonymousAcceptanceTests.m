@@ -1,5 +1,5 @@
 #import <Kiwi.h>
-#import "Anonymous.h"
+#import "AnonymousSubclass.h"
 
 @protocol Foo <NSObject>
 @end
@@ -21,7 +21,7 @@ SPEC_BEGIN(AnonymousAcceptanceTests)
 describe(@"instanceOf", ^{
 
     it(@"creates an anonymous subclass of a protocol and returns a new instance", ^{
-        id fooInstance = instanceOf(@protocol(Foo), nil);
+        id fooInstance = aa_instanceOf(@protocol(Foo), nil);
 
         [[fooInstance should] conformToProtocol:@protocol(Foo)];
         [[fooInstance should] beKindOfClass:[NSObject class]];
@@ -30,8 +30,8 @@ describe(@"instanceOf", ^{
     it(@"allows an instance method with no arguments and no return value to be defined", ^{
         __block BOOL called = NO;
 
-        id<FooBar> fooBar = instanceOf(@protocol(FooBar), ^{
-            implement(@selector(doFooBar), ^(id self){
+        id<FooBar> fooBar = aa_instanceOf(@protocol(FooBar), ^{
+            aa_implement(@selector(doFooBar), ^(id self){
                 called = YES;
             });
         });
@@ -41,8 +41,8 @@ describe(@"instanceOf", ^{
     });
 
     it(@"allows an instance method with arguments and return value to be defined", ^{
-        id<ComplexFooBar> fooBar = instanceOf(@protocol(ComplexFooBar), ^{
-            implement(@selector(doNumericFooBarWithArgument:), ^(id self, int arg){
+        id<ComplexFooBar> fooBar = aa_instanceOf(@protocol(ComplexFooBar), ^{
+            aa_implement(@selector(doNumericFooBarWithArgument:), ^(id self, int arg){
                 return arg * arg;
             });
         });
@@ -51,19 +51,19 @@ describe(@"instanceOf", ^{
     });
 
     it(@"allows you to build anonymous classes with state", ^{
-        id<StatefulFooBar> fooBar = instanceOf(@protocol(StatefulFooBar), ^{
+        id<StatefulFooBar> fooBar = aa_instanceOf(@protocol(StatefulFooBar), ^{
 
             // @property nickname
             __block NSString *_nickname;
-            implement(@selector(nickname), ^(id self){
+            aa_implement(@selector(nickname), ^(id self){
                 return _nickname;
             });
-            implement(@selector(setNickname:), ^(id self, NSString *nickname){
+            aa_implement(@selector(setNickname:), ^(id self, NSString *nickname){
                 _nickname = nickname;
             });
 
             // -description
-            implement(@selector(description), ^(id<StatefulFooBar> self){
+            aa_implement(@selector(description), ^(id<StatefulFooBar> self){
                 return [NSString stringWithFormat:@"They call me '%@'", self.nickname];
             });
 

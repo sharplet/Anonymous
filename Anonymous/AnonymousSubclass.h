@@ -8,6 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-id instanceOf(Protocol *p, void (^def)(void));
+id aa_instanceOf(Protocol *p, void (^def)(void));
 
-void implement(SEL sel, id imp_block);
+void aa_implement(SEL sel, id imp_block);
